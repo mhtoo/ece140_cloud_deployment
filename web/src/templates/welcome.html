@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Page Info -->
+    <title>Agile Demo</title>
+    <meta name="author" content="Ramsin Khoshabeh">
+    <meta name="description" content="A Place to Call Home">
+
+    <link rel="stylesheet" type="text/css" href="css/agile.css">
+  </head>
+
+  <body>
+    <div class='separator'>User Records</div>
+      <table class='margin-top-xl'>
+        <thead>
+          <tr>
+            <th class='small'> First Name </th>
+            <th class='medium'> Last Name </th>
+            <th class='large'> Email </th>
+            <th class='large'> Comment </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <td> {{user[0]}} </td>
+            <td> {{user[1]}} </td>
+            <td> {{user[2]}} </td>
+            <td> {{user[3]}} </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <br><br><br>
+    <div>
+      <form action="/post" method="post" id="userform">
+
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname"><br><br>
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname"><br><br>
+        <label for="fname">Email:</label>
+        <input type="text" id="email" name="email"><br><br>
+        <label for="lname">Comment:</label>
+        <input type="text" id="comment" name="comment"><br><br>
+        <input type="submit" value="Submit" onclick="alertUser()">
+
+      </form>
+
+    </div>
+
+  </body>
+
+  <script>
+    function alertUser(){
+      alert("Submit successful.Thank you for visiting!");
+      return true;
+    }
+  </script>
+
+</html>
