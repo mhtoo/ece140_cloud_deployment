@@ -1,0 +1,44 @@
+html *
+{
+   font-family: 'Times New Roman', Times, serif !important;
+}
+
+.top-bar{
+    text-align: center;
+    padding: 1em;
+}
+
+.resume-name {
+    font-size: 175%;
+    font-weight: bold;
+}
+
+.content-resume-container {
+    padding-left:9em;
+    padding-right:9em;
+}
+
+.title-heading {
+    font-size: 110%;
+    font-weight: bold;
+}
+
+.content-resume {
+    padding-top: 0.1em;
+    padding-bottom:1em;
+}
+
+hr .solid-line {
+  border-top: 2px;
+}
+
+.education {
+    padding-bottom: 16px;
+}
+
+.tab {
+   display: inline-block;
+   margin-left: 40px;
+}
+
+

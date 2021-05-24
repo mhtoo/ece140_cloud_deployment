@@ -65,6 +65,9 @@ def get_welcome(req):
 def get_cv(req):
   return render_to_response('templates/cv.html',[],request=req)
 
+def about(req):
+  return render_to_response('templates/about.html',[],request=req)
+
 def get_avatar(req):
   return { "Avatar": "/public/avatar.jpg"}
 
@@ -127,6 +130,9 @@ if __name__ == '__main__':
 
   config.add_route('get_project', '/project')
   config.add_view(get_project, route_name='get_project', renderer='json')
+
+  config.add_route('about', '/about')
+  config.add_view(about, route_name='about')
 
   config.add_static_view(name='/', path='./public', cache_max_age=3600)
 
