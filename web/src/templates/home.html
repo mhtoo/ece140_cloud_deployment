@@ -1,25 +1,121 @@
 <!doctype html>
 <html lang="en">
 
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Page Info -->
-    <title>Agile Demo</title>
-    <meta name="author" content="Ramsin Khoshabeh">
-    <meta name="description" content="A Place to Call Home">
+  <!-- Page Info -->
+  <title>Myo Htoo's Home Page</title>
+  <meta name="author" content="Myo Myint Htoo">
+  <meta name="description" content="A Place to Call Home">
+  <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/home.css">
+  <script src="js/home.js"></script>
+</head>
 
-    <link rel="stylesheet" type="text/css" href="css/agile.css">
-  </head>
+<body>
+  <nav class="navbar">
+    <ul class="site-links">
+      <li>
+        <a href="#about">About</a>
+      </li>
+      <li>
+        <a href="#team">Team Members</a>
+      </li>
+      <li>
+        <a href="#classmates">Classmates</a>
+      </li>
+      <li>
+        <div class="dropdown">
+          <a onclick="dropFunction()" class="dropbtn">Dropdown</a>
+          <div id="theDropdown" class="dropdown-content">
+            <a href="/cv">CV</a>
+            <a href="/welcome">Welcome</a>
+            <a href="/about">About My Projects</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
 
-  <body>
+  <main id="main" class="wrapper">
+    <section class="primary-block">
+      <article id="tribute-info">
+        <div class="padding-profile">
+          <figure id="img-div" class="main-block">
+            <img
+              src="myo.jpg"
+              id="image" class="main-pp" />
+            <figcaption id="img-caption">
+              <header class="title-block" id="title">
+                <h1 class="main-title">Myo Myint Htoo</h1>
+                <p class="short-desc">mhtoo@ucsd.edu</p>
+              </header>
+            </figcaption>
+          </figure>
+        </div>
+      </article>
+    </section>
 
-    <div class='hero'>
-      <h1> Myo's Page: COMING SOON!!!!!!! </h1>
-      <p> Just you wait for it!</p>
-    </div>
+    <section id="about" class="secondary-block">
+      <header class="secondary-heading">
+        <h2>About Myo</h2>
+      </header>
 
-  </body>
+      <article class="secondary-content-block">
+        <p class="about-me">
+          Hello World! I'm <b>Myo Myint Htoo</b>, a UC San Diego senior graduating in Fall 2021. I grew up in Yangon,
+          Myanmar where I was fortunate enough to be given the opportunity to attend UC San Diego and pursue my goals as
+          a software engineer. I'm majoring in Computer Engineering, and my passion today lies in helping my community
+          through software. Feel free to browse my resume or connect with me, and let's help solve problems together!
+        </p>
+      </article>
+    </section>
+
+    <section id="team" class="secondary-block">
+      <header class="secondary-heading">
+        <h2>Meet The Team Members of EZ Trader</h2>
+      </header>
+
+      <article class="secondary-content-block row">
+        <div class="column team-section">
+          <p class="team-member-each" onclick="linkHector()">Hector Montenegro</p>
+        </div>
+        <div class="column team-section" onclick="linkAdib()">
+          <p class="team-member-each">Muhammad Taufek</p>
+        </div>
+        <div class="column team-section" onclick="linkTanvir()">
+          <p class="team-member-each">Tanvir Hussain</p>
+        </div>
+      </article>
+    </section>
+
+    <section id="classmates" class="secondary-block">
+      <header class="secondary-heading">
+        <h2>Classmates</h2>
+      </header>
+      <p class="section-desc">ECE 140B</p>
+
+      <article class="secondary-content-block row">
+        {% for user in users %}
+        <div class="column classmates-wrapper">
+          <div class="classmates-num">{{user[0]}}</div>
+          <div class="classmates-info">
+            <div class="classmates-detail">Classmate:
+              {{user[1]}}
+            </div>
+            <div class="classmates-link">
+              Find their link
+              <a class="external-links" target="_blank" href="{{user[2]}}">here</a>.
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </article>
+    </section>
+  </main>
+</body>
+
 </html>

@@ -21,6 +21,7 @@ cursor.execute("drop table if exists Education;")
 cursor.execute("drop table if exists Project;")
 cursor.execute("drop table if exists Link;")
 cursor.execute("drop table if exists Users;")
+cursor.execute("drop table if exists Classmembers;")
 
 # Create a TStudents table (wrapping it in a try-except is good practice)
 try:
@@ -86,6 +87,17 @@ try:
 except:
   print("Users table already exists. Not recreating it.")
 
+# Create a TStudents table (wrapping it in a try-except is good practice)
+try:
+  cursor.execute(""" CREATE TABLE Classmembers (
+      id          integer  AUTO_INCREMENT PRIMARY KEY,
+      name        VARCHAR(100) NOT NULL,
+      link        VARCHAR(100) NOT NULL
+    );
+  """)
+except:
+  print("Users table already exists. Not recreating it.")
+
 # Insert Records
 query = "insert into Personal (first_name, last_name, email) values (%s, %s, %s)"
 values = ("Myo Myint","Htoo","mhtoo@ucsd.edu")
@@ -132,6 +144,41 @@ cursor.execute(query, values)
 db.commit()
 
 cursor.execute("select * from Link;")
+print('---------- DATABASE INITIALIZED ----------')
+[print(x) for x in cursor]
+
+
+query = "insert into Classmembers (name, link) values (%s, %s)"
+values = [("Vladimir Altov","http://143.198.73.78/"), ("Ardebilianfard, Sepehr","http://165.232.131.14:3001"),
+("Arestakesyan, Ankeen","http://144.126.210.32/"),("Bailon, Felipe","http://143.198.136.37/"),
+("Bian, Jiazheng","http://www.biandavid.com/"),("Bissett, Christian","http://143.198.128.150:6543/"),
+("Chen, James","http://143.198.57.119/"),("Dastider, Gourab","http://144.126.215.62/"),
+("Embucado, Chaztine-Xiana","http://1143.198.59.27/"),("Guan, Tony","http://143.198.76.115/"),
+("Gudetti, Jacinth","http://143.198.97.209/"),("Gustafson, Bret","http://143.110.153.51/"),
+("Hanna, Aaron","http://144.126.212.235/"),("Hernandez, Andrew","http://www.cvwebring.com/"),
+("Hsu, Anwar","anwarhsu.com"),("Vladimir Altov","http://143.198.73.78/"),
+("Huang, Eddie","eddieh00.com"),("Vladimir Altov","http://143.198.73.78/"),
+("Huang, Isis","http://64.227.107.46/"),("Huang, Hanjie","http://161.35.229.252/"),
+("Johnson, Kimberly","43.198.71.181"),("Kaharudin, Jason","http://178.128.96.97/"),
+("Kahr, Andrew","http://165.232.131.189/"),("Kim, Iris","http://143.198.136.173/"),
+("Kim, Jake","http://128.199.3.204/"),("Kim, Stephen","http://kimsternator.games/"),
+("Koshmerl, Damon","http://143.198.111.59/"),("Kragh, Mark","http://167.99.122.242/"),
+("Lee, Charles","http://35.185.251.8/"),("Liu, Zhenwei","http://164.90.144.97/"),
+("Malgeri, John","http://161.35.228.30/"),("Manalad, Christian","http://165.232.141.195/"),
+("Nazemi, Ariane","http://143.198.236.89/"),("Noble, Emerson","http://143.110.234.12/"),
+("On, Dong","http://128.199.15.251/"),("Raha, Anjuman","http://161.35.239.252/"),
+("Sanchez, Manuel","http://165.232.153.255/"),("Tang, Chonghao","http://165.232.157.102/"),
+("Malgeri, John","http://161.35.228.30/"),("Manalad, Christian","http://165.232.141.195/"),
+("Tong, Hung","http://161.35.54.86/"),("Villegas, Carl","http://143.198.59.67/"),
+("Yang, Frederick","http://143.198.232.38/"),("Yim, Aaron","http://165.232.143.129/"),
+("Younessi, Kasra","http://64.227.101.230/"),
+("Zhang, Hang","http://144.126.221.136/"),
+("Zhang, Siyuan","http://143.198.98.101")]
+cursor.executemany(query, values)
+db.commit()
+
+
+cursor.execute("select * from Classmembers;")
 print('---------- DATABASE INITIALIZED ----------')
 [print(x) for x in cursor]
 

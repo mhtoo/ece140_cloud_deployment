@@ -36,7 +36,12 @@ def post_form(request):
 
 def get_home(req):
   # Connect to the database and retrieve the users
-  return render_to_response('templates/home.html',[], request=req)
+  db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
+  cursor = db.cursor()
+  cursor.execute("select * from Classmembers;")
+  records = cursor.fetchall()
+  db.close()
+  return render_to_response('templates/home.html',{'users': records}, request=req)
 
 def get_personal(req):
 
@@ -69,7 +74,7 @@ def about(req):
   return render_to_response('templates/about.html',[],request=req)
 
 def get_avatar(req):
-  return { "Avatar": "/public/avatar.jpg"}
+  return { "Avatar": "/public/myo.jpg"}
 
 def get_education(req):
   
@@ -80,7 +85,7 @@ def get_education(req):
   db.close()
 
   record = records[0]
-  return {'Education': record[0], 'Degree': record[1], 'Major': record[2], 'Date': record[3]}
+  return {'Education': record[1], 'Degree': record[2], 'Major': record[3], 'Date': record[4]}
 
 def get_project(req):
   
@@ -98,7 +103,7 @@ def get_project(req):
   Tan = links[0]
   Hector = links[1]
   Adib = links[2]
-  return {'Title': record[0], 'Description': record[1], 'Link': record[2], 'Image_src': record[3] , 'Teamlinks': [Tan[1],Hector[1], Adib[1]]}
+  return {'Title': record[1], 'Description': record[2], 'Link': record[3], 'Image_src': record[4] , 'Teamlinks': [Tan[1],Hector[1], Adib[1]]}
 
 ''' Route Configurations '''
 if __name__ == '__main__':
