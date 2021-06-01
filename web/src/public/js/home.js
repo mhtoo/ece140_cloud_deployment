@@ -1,13 +1,13 @@
 function linkHector(){
-   window.location.href = "http://165.232.152.55/";
+   window.location.href = "http://165.232.152.55/cv";
 }
 
 function linkAdib(){
-   window.location.href = "http://161.35.232.250/";
+   window.location.href = "http://161.35.232.250/cv";
 }
 
 function linkTanvir(){
-   window.location.href = "http://128.199.10.10/";
+   window.location.href = "http://128.199.10.10/cv";
 }
 
 function dropFunction() {
