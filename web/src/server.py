@@ -1,10 +1,12 @@
 from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
 from pyramid.renderers import render_to_response
+from pyramid.response import Response
 
 import mysql.connector as mysql
 import os
 import datetime
+import json
 
 db_user = os.environ['MYSQL_USER']
 db_pass = os.environ['MYSQL_PASSWORD']
@@ -41,6 +43,7 @@ def get_home(req):
   cursor.execute("select * from Classmembers;")
   records = cursor.fetchall()
   db.close()
+
   return render_to_response('templates/home.html',{'users': records}, request=req)
 
 def get_personal(req):
@@ -54,7 +57,11 @@ def get_personal(req):
   record = records[0]
   print (record)
 
-  return {'Firstname': record[0], 'Lastname': record[1], 'Email': record[2]}
+  resArray = {'Firstname': record[0], 'Lastname': record[1], 'Email': record[2]}
+  response = Response(body=json.dumps(resArray))
+  response.headers.update({'Access-Control-Allow-Origin': '*'})
+
+  return  response
 
 def get_welcome(req):
   # Connect to the database and retrieve the users
@@ -74,7 +81,11 @@ def about(req):
   return render_to_response('templates/about.html',[],request=req)
 
 def get_avatar(req):
-  return { "Avatar": "/public/myo.jpg"}
+
+  resArray = { "Avatar": "/public/myo.jpg"}
+  response = Response(body=json.dumps(resArray))
+  response.headers.update({'Access-Control-Allow-Origin': '*'})
+  return  response
 
 def get_education(req):
   
@@ -85,7 +96,10 @@ def get_education(req):
   db.close()
 
   record = records[0]
-  return {'Education': record[1], 'Degree': record[2], 'Major': record[3], 'Date': record[4]}
+  resArray = {'Education': record[1], 'Degree': record[2], 'Major': record[3], 'Date': record[4]}
+  response = Response(body=json.dumps(resArray))
+  response.headers.update({'Access-Control-Allow-Origin': '*'})
+  return  response
 
 def get_project(req):
   
@@ -103,7 +117,10 @@ def get_project(req):
   Tan = links[0]
   Hector = links[1]
   Adib = links[2]
-  return {'Title': record[1], 'Description': record[2], 'Link': record[3], 'Image_src': record[4] , 'Teamlinks': [Tan[1],Hector[1], Adib[1]]}
+  resArray = {'Title': record[1], 'Description': record[2], 'Link': record[3], 'Image_src': record[4] , 'Teamlinks': [Tan[1],Hector[1], Adib[1]]}
+  response = Response(body=json.dumps(resArray))
+  response.headers.update({'Access-Control-Allow-Origin': '*'})
+  return  response
 
 ''' Route Configurations '''
 if __name__ == '__main__':
