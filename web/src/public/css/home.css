@@ -71,7 +71,24 @@ body {
    padding-top: 5rem;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 740px) {
+   .navbar {
+       flex-direction: column;
+       height: 80px;
+       justify-content: space-around;
+       position: initial;
+   }
+
+   .site-links a {
+       padding: 6px 15px;
+   }
+
+   .wrapper {
+       padding-top: 0;
+   }
+}
+
+@media only screen and (max-width: 1000px) {
    .navbar {
        flex-direction: column;
        height: 90px;
@@ -119,6 +136,12 @@ body {
 @media only screen and (max-width: 400px) {
    .main-title {
        font-size: 7rem;
+   }
+}
+
+@media only screen and (max-width: 1000px) {
+   .main-title {
+       font-size: 8rem;
    }
 }
 
@@ -196,7 +219,18 @@ body {
    row-gap: 1rem;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1000px) and (min-width: 740px) {
+   .row {
+       grid-template-columns: 1fr;
+       column-gap: 0;
+   }
+
+   .column {
+       grid-column: 1;
+   }
+}
+
+@media only screen and (max-width: 740px) {
    .row {
        grid-template-columns: 1fr;
        column-gap: 0;
